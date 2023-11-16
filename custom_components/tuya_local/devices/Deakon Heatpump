@@ -1,7 +1,11 @@
-name: Deakon heatpump
+name: EVI DC Inverter Heat Pump
+products:
+  - id: eb9a44bd30916d3150ftup
+    name: A2 Pro
+  - id: eb313fb004c523375cxgzw
+    name: A2 Pro 2
 primary_entity:
   entity: climate
-translation_key: heatpump
   dps:
     - id: 1
       name: ON-OFF
@@ -66,67 +70,67 @@ secondary_entities:
         type: string
         name: Para. Inquiry
         mapping:
-          - dps_val: "1"
+          - dps_val: 1
             value: version no.
-          - dps_val: "2"
+          - dps_val: 2
             value: ambient temp.
-          - dps_val: "3"
+          - dps_val: 3
             value: water tank temp.
-          - dps_val: "4"
+          - dps_val: 4
             value: outlet water temp.
-          - dps_val: "5"
+          - dps_val: 5
             value: inlet water temp.
-          - dps_val: "6"
+          - dps_val: 6
             value: evaporator coil temp.
-          - dps_val: "7"
+          - dps_val: 7
             value: exhaust gas temp.
-          - dps_val: "8"
+          - dps_val: 8
             value: condenser coil temp. (after throttling)
-          - dps_val: "9"
+          - dps_val: 9
             value: suction temp.
-          - dps_val: "10"
+          - dps_val: 10
             value: module temp.
-          - dps_val: "11"
+          - dps_val: 11
             value: main valve opening degrees
-          - dps_val: "12"
+          - dps_val: 12
             value: auxiliary valve opening degrees
-          - dps_val: "13"
+          - dps_val: 13
             value: exhaust gas valve opening degrees
-          - dps_val: "14"
+          - dps_val: 14
             value: Fan speed
-          - dps_val: "15"
+          - dps_val: 15
             value: running frequency
-          - dps_val: "16"
+          - dps_val: 16
             value: AC voltage
-          - dps_val: "17"
+          - dps_val: 17
             value: DC voltage
-          - dps_val: "18"
+          - dps_val: 18
             value: current of whole unit
-          - dps_val: "19"
+          - dps_val: 19
             value: compressor current
-          - dps_val: "20"
+          - dps_val: 20
             value: output power
-          - dps_val: "21"
+          - dps_val: 21
             value: EVI plate heat exchanger inlet sensor
-          - dps_val: "22"
+          - dps_val: 22
             value: EVI plate heat exchanger outlet sensor
-          - dps_val: "23"
+          - dps_val: 23
             value: low pressure
-          - dps_val: "24"
+          - dps_val: 24
             value: high pressure
-          - dps_val: "25"
+          - dps_val: 25
             value: error code
-          - dps_val: "26"
+          - dps_val: 26
             value: limited frequency code
-          - dps_val: "27"
+          - dps_val: 27
             value: LCD Controller version
-          - dps_val: "28"
+          - dps_val: 28
             value: MCU1 version
-          - dps_val: "29"
+          - dps_val: 29
             value: MCU2 version
-          - dps_val: "30"
+          - dps_val: 30
             value: MCU3 version
-          - dps_val: "31"
+          - dps_val: 31
             value: Error History
   - entity: select
     name: Inquire_Value
@@ -145,35 +149,35 @@ secondary_entities:
         type: string
         name: Para. Setting
         mapping:
-          - dps_val: "d01"
+          - dps_val: d01
             value: Heating Temp Setting
-          - dps_val: "d02"
+          - dps_val: d02
             value: Heating Water Tank Temp Setting
-          - dps_val: "d03"
+          - dps_val: d03
             value: Cooling Temp Setting
-          - dps_val: "d04"
+          - dps_val: d04
             value: Restart Temp Difference 
-          - dps_val: "d05"
+          - dps_val: d05
             value: Selection on Control basis
-          - dps_val: "d06"
+          - dps_val: d06
             value: Setting Temp Of Electric Heater
-          - dps_val: "d07"
+          - dps_val: d07
             value: Deviation Time of Electric Heater Start
-          - dps_val: "d08"
+          - dps_val: d08
             value: Evaporator coil Temp to enter into defrosting
-          - dps_val: "d09"
+          - dps_val: d09
             value: Evaporator coil Temp to exit defrosting 
-          - dps_val: "d10"
+          - dps_val: d10
             value: Defrosting Cycle Period
-          - dps_val: "d11"
+          - dps_val: d11
             value: Defrosting Time
-          - dps_val: "d12"
+          - dps_val: d12
             value: Selection on Control after temp is reached
-          - dps_val: "d13"
+          - dps_val: d13
             value: Ambient temp for Stopping and Starting machine
-          - dps_val: "d14"
+          - dps_val: d14
             value: Temp Difference of Inlet and Outlet water for heat pump's
-          - dps_val: "d15"
+          - dps_val: d15
             value: Working Way of Water Pump
   - entity: select
     name: Set_Value
