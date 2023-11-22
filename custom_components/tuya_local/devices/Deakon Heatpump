@@ -30,8 +30,10 @@ primary_entity:
       mapping:
         - dps_val: hot
           value: Heating
+          icon: "mdi:fire"
         - dps_val: cold
           value: Cooling
+          icon: "mdi:snowflake"
         - dps_val: hotwater
           value: Hot Water
         - dps_val: hot_hotwater
@@ -56,8 +58,12 @@ primary_entity:
           value: On
         - dps_val: off
           value: Off
+          icon: "mdi:hvac-off"
+          icon_priority: 1
         - dps_val: defrost
           value: Defrost
+          icon: "mdi:snowflake-melt"
+          icon_priority: 3
         - dps_val: antifrozen
           value: Antifrozen
 secondary_entities:
@@ -68,7 +74,7 @@ secondary_entities:
       - id: 104
         # mappings based on dev portal info, observed values and manufacturer's manual. DPID 104 (para. Inquiry) specifies which parameter is inquired and the value is returned using DPID 105 (Inquiry Value).
         type: string
-        name: Para. Inquiry
+        name: option
         mapping:
           - dps_val: 1
             value: version no.
@@ -139,7 +145,7 @@ secondary_entities:
       - id: 105
         # DPID 104 (para. Inquiry) specifies which parameter is inquired and the value is returned using DPID 105 (Inquiry Value).
         type: integer
-        name: Inquiry Value
+        name: option
   - entity: select
     name: Set_ID
     category: config
@@ -147,7 +153,7 @@ secondary_entities:
       - id: 106
         # mappings based on dev portal info, observed values and manufacturer's manual. DPID 106 (Para. Setting) specifies which parameter is set using the value in DPID 107 (Set Value).
         type: string
-        name: Para. Setting
+        name: option
         mapping:
           - dps_val: d01
             value: Heating Temp Setting
@@ -186,4 +192,4 @@ secondary_entities:
       - id: 107
         # DPID 106 (Para. Setting) specifies which parameter is set using the value in DPID 107 (Set Value).
         type: integer
-        name: Set Value
+        name: option
