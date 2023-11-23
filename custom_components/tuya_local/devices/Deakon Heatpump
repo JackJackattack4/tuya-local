@@ -16,13 +16,13 @@ primary_entity:
         - dps_val: true
           value: "On"
     - id: 2
-      name: Target Temp.
+      name: target_temperature
       type: integer
       range:
-        min: 5
+        min: 7
         max: 60
     - id: 3
-      name: Current Temp.
+      name: current_temperature
       type: integer
     - id: 4
       name: Working Mode
@@ -66,6 +66,14 @@ primary_entity:
           icon_priority: 3
         - dps_val: antifrozen
           value: Antifrozen
+    - id: 105
+      # DPID 104 (para. Inquiry) specifies which parameter is inquired and the value is returned using DPID 105 (Inquiry Value).
+      name: Inquire_Value
+      type: integer
+    - id: 107
+      # DPID 106 (Para. Setting) specifies which parameter is set using the value in DPID 107 (Set Value).
+      name: Set_Value
+      type: integer
 secondary_entities:
   - entity: select
     name: Inquire_ID
@@ -138,14 +146,6 @@ secondary_entities:
             value: MCU3 version
           - dps_val: "31"
             value: Error History
-  #- entity: select
-    #name: Inquire_Value
-    #category: config
-    #dps:
-      #- id: 105
-        # DPID 104 (para. Inquiry) specifies which parameter is inquired and the value is returned using DPID 105 (Inquiry Value).
-        #type: integer
-        #name: option
   - entity: select
     name: Set_ID
     category: config
@@ -185,11 +185,3 @@ secondary_entities:
             value: Temp Difference of Inlet and Outlet water for heat pump's
           - dps_val: "d15"
             value: Working Way of Water Pump
-  #- entity: select
-    #name: Set_Value
-    #category: config
-    #dps:
-      #- id: 107
-        # DPID 106 (Para. Setting) specifies which parameter is set using the value in DPID 107 (Set Value).
-        #type: integer
-        #name: option
