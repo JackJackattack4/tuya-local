@@ -58,6 +58,27 @@ entities:
             value: defrosting
           - dps_val: antifrozen
             value: heating
+      - id: 105
+        type: integer
+        name: inquire_value
+      - id: 109
+        type: string
+        name: error_code_table
+      - id: 110
+        type: string
+        name: error_code_table2
+      - id: 111
+        type: string
+        name: driver_error_code1
+      - id: 112
+        type: string
+        name: driver_error_code2
+      - id: 113
+        type: string
+        name: sen_sys_error_code1
+      - id: 114
+        type: string
+        name: sen_sys_error_code2
   - entity: select
     name: Combined mode
     icon: "mdi:heat-pump"
@@ -92,6 +113,7 @@ entities:
             value: Heating
             icon: "mdi:home-thermometer"
           - dps_val: Cooling
+            value: Cooling
             icon: "mdi:snowflake-thermometer"
   - entity: binary_sensor
     class: problem
@@ -107,24 +129,17 @@ entities:
       - id: 13
         type: bitfield
         name: fault_code
-      - id: 109
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 103
         type: string
-        name: error_code_table
-      - id: 110
-        type: string
-        name: error_code_table2
-      - id: 111
-        type: string
-        name: driver_error_code1
-      - id: 112
-        type: string
-        name: driver_error_code2
-      - id: 113
-        type: string
-        name: sen_sys_error_code1
-      - id: 114
-        type: string
-        name: sen_sys_error_code2
+        name: sensor
+        mapping:
+          - dps_val: defrost
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Anti-freeze
     class: cold
@@ -138,8 +153,7 @@ entities:
             value: true
           - value: false
   - entity: select
-    name: Diagnostic query
-    icon: "mdi:database-search"
+    name: Inquire_ID
     category: config
     dps:
       - id: 104
@@ -147,59 +161,59 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Version
+            value: version no.
           - dps_val: "2"
-            value: Ambient temperature
+            value: ambient temp.
           - dps_val: "3"
-            value: Water tank temperature
+            value: water tank temp.
           - dps_val: "4"
-            value: Outlet temperature
+            value: outlet water temp.
           - dps_val: "5"
-            value: Inlet temperature
+            value: inlet water temp.
           - dps_val: "6"
-            value: Evaporator coil temperature
+            value: evaporator coil temp.
           - dps_val: "7"
-            value: Exhaust gas temperature
+            value: exhaust gas temp.
           - dps_val: "8"
-            value: Condensor coil temperature
+            value: condenser coil temp. (after throttling)
           - dps_val: "9"
-            value: Suction temperature
+            value: suction temp.
           - dps_val: "10"
-            value: Module temperature
+            value: module temp.
           - dps_val: "11"
-            value: Main valve opening
+            value: main valve opening degrees
           - dps_val: "12"
-            value: Secondary valve opening
+            value: auxiliary valve opening degrees
           - dps_val: "13"
-            value: Exhaust valve opening
+            value: exhaust gas valve opening degrees
           - dps_val: "14"
             value: Fan speed
           - dps_val: "15"
-            value: Running frequency
+            value: running frequency
           - dps_val: "16"
             value: AC voltage
           - dps_val: "17"
             value: DC voltage
           - dps_val: "18"
-            value: Overall current
+            value: current of whole unit
           - dps_val: "19"
-            value: Compressor current
+            value: compressor current
           - dps_val: "20"
-            value: Output power
+            value: output power
           - dps_val: "21"
-            value: EVI plate inlet
+            value: EVI plate heat exchanger inlet sensor
           - dps_val: "22"
-            value: EVI plate outlet
+            value: EVI plate heat exchanger outlet sensor
           - dps_val: "23"
-            value: Low pressure
+            value: low pressure
           - dps_val: "24"
-            value: High pressure
+            value: high pressure
           - dps_val: "25"
-            value: Error code
+            value: error code
           - dps_val: "26"
-            value: Limited frequency code
+            value: limited frequency code
           - dps_val: "27"
-            value: LCD version
+            value: LCD Controller version
           - dps_val: "28"
             value: MCU1 version
           - dps_val: "29"
@@ -207,59 +221,63 @@ entities:
           - dps_val: "30"
             value: MCU3 version
           - dps_val: "31"
-            value: Error history
+            value: Error History
+  # DP105: expose the raw diagnostic response for change tracking.
+  # The climate.inquire_value attribute remains available for existing scanners.
   - entity: sensor
-    name: Diagnostic value
+    name: Diagnostic raw C105
     category: diagnostic
-    icon: "mdi:database-eye"
+    icon: mdi:database-clock
     dps:
       - id: 105
         type: integer
-        optional: true
         name: sensor
   - entity: select
-    name: Parameter ID
-    icon: "mdi:database-cog"
+    name: Set_ID
     category: config
     dps:
       - id: 106
+        # DP106 selects parameter, DP107 writes a value. Device protocol is multiplexed.
         type: string
         name: option
         mapping:
-          - dps_val: d01
-            value: Heating temperature
-          - dps_val: d02
-            value: Water tank temperature
-          - dps_val: d03
-            value: Cooling temperature
-          - dps_val: d04
-            value: Temperature hysteresis
-          - dps_val: d05
-            value: Basic control
-          - dps_val: d06
-            value: Electric heat temperature
-          - dps_val: d07
-            value: Electric heat start delay
-          - dps_val: d08
-            value: Coil defrost temperature
-          - dps_val: d09
-            value: Coil defrost end temperature
-          - dps_val: d10
-            value: Defrost interval
-          - dps_val: d11
-            value: Defrost time
-          - dps_val: d12
-            value: Temperature reached control
-          - dps_val: d13
-            value: Ambient temperature threshold
-          - dps_val: d14
-            value: Inlet-outlet temperature difference
-          - dps_val: d15
-            value: Water pump control
+          - dps_val: "d01"
+            value: Heating Temp Setting
+          - dps_val: "d02"
+            value: Heating Water Tank Temp Setting
+          - dps_val: "d03"
+            value: Cooling Temp Setting
+          - dps_val: "d04"
+            value: Restart Temp Difference
+          - dps_val: "d05"
+            value: Selection on Control basis
+          - dps_val: "d06"
+            value: Setting Temp Of Electric Heater
+          - dps_val: "d07"
+            value: Deviation Time of Electric Heater Start
+          - dps_val: "d08"
+            value: Evaporator coil Temp to enter into defrosting
+          - dps_val: "d09"
+            value: Evaporator coil Temp to exit defrosting
+          - dps_val: "d10"
+            value: Defrosting Cycle Period
+          - dps_val: "d11"
+            value: Defrosting Time
+          - dps_val: "d12"
+            value: Selection on Control after temp is reached
+          - dps_val: "d13"
+            value: Ambient temp for Stopping and Starting machine
+          - dps_val: "d14"
+            value: Temp Difference of Inlet and Outlet water for heat pump's
+          - dps_val: "d15"
+            value: Working Way of Water Pump
+  # DP107: signed values support negative D08 temperatures and configurable D10 intervals.
+  # DP107 is multiplexed: select the parameter using DP106 before writing.
   - entity: number
     name: Parameter value
     category: config
-    icon: "mdi:database-edit"
+    icon: mdi:database-edit
+    mode: box
     dps:
       - id: 107
         type: integer
